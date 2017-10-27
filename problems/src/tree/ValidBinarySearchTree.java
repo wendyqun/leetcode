@@ -25,6 +25,10 @@ public class ValidBinarySearchTree {
         long low, high;
     }
 
+    static class Data{
+        long data;
+    }
+
     static class TreeNode {
         int val;
         TreeNode left;
@@ -36,6 +40,50 @@ public class ValidBinarySearchTree {
     }
 
     /**
+     * 使用后续遍历
+     * 左子树的最大值要小于根节点
+     * 右子树的最小值要大于根节点
+     *
+     * 叶子节点的最大值和最小值是他本身，叶子节点不进入递归
+     *
+     * 函数有两个返回值，一个是boolean ，一个是使用Data 借助返回本子树的最大值或者最小值（根据left参数判断）
+     * @param node
+     * @param data
+     * @param left
+     * @return
+     */
+    static boolean myFun(TreeNode node,Data data,boolean left){
+        if(node==null){
+            return true;
+        }
+        if(node.left==null&&node.right==null){
+            data.data=node.val;
+            return true;
+        }
+
+        Data leftV=new Data();
+        Data rightV=new Data();
+        boolean b1;
+        boolean b2;
+        if(node.left==null){
+            b1=myFun(node.right,rightV,false);
+            data.data=left?node.right.val:node.val;
+            return b1&&rightV.data>node.val;
+        }else if(node.right==null){
+            b1=myFun(node.left,leftV,true);
+            data.data=left?node.left.val:node.val;
+            return b1&&leftV.data<node.val;
+        }else{
+            b1=myFun(node.left,leftV,true);
+            b2=myFun(node.right,rightV,false);
+            data.data=left?node.right.val:node.left.val;
+            return b1&&b2&&leftV.data<node.val&&rightV.data>node.val;
+        }
+    }
+
+
+
+    /**
      * Main method
      *
      * @param args
@@ -45,6 +93,17 @@ public class ValidBinarySearchTree {
         TreeNode root = new TreeNode(Integer.MIN_VALUE);
         root.right = new TreeNode(Integer.MAX_VALUE);
         System.out.println(new ValidBinarySearchTree().isValidBST(root));
+
+        TreeNode node=new TreeNode(11);
+        node.left = new TreeNode(3);
+        node.right=new TreeNode(20);
+        node.left.left=new TreeNode(1);
+        node.left.right=new TreeNode(12);
+        node.right.left=new TreeNode(15);
+        node.right.right=new TreeNode(30);
+
+        System.out.println(myFun(node,new Data(),true));
+
     }
 
     private boolean isValidBST(TreeNode root) {
