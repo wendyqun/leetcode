@@ -1,7 +1,6 @@
 package tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by gouthamvidyapradhan on 12/03/2017.
@@ -9,11 +8,11 @@ import java.util.List;
  * <p>
  * For example:
  * Given the following binary tree,
- * 1            <---
+ *   1            <---
  * /   \
  * 2     3         <---
- * \     \
- * 5     4       <---
+ *  \     \
+ *   5     4       <---
  * You should return [1, 3, 4].
  */
 
@@ -26,6 +25,26 @@ public class BinarayTreeRightSideView {
         TreeNode(int x) {
             val = x;
         }
+    }
+
+    public static List<Integer> f(TreeNode root){
+        LinkedList<TreeNode> queue=new LinkedList<>();
+        queue.offer(root);
+        List<Integer> resList=new ArrayList<>();
+        while(!queue.isEmpty()){
+            TreeNode last=queue.getLast();
+            resList.add(last.val);
+            LinkedList<TreeNode> tmpList=new LinkedList<>();
+            while(!queue.isEmpty()){
+                TreeNode first=queue.pollFirst();
+                if(first.left!=null)
+                    tmpList.add(first.left);
+                if(first.right!=null)
+                    tmpList.add(first.right);
+            }
+            queue=tmpList;
+        }
+        return resList;
     }
 
     private int maxHeigh = Integer.MIN_VALUE;
@@ -49,6 +68,14 @@ public class BinarayTreeRightSideView {
         root.right.left.left.left = new TreeNode(7);
 
         List<Integer> list = new BinarayTreeRightSideView().rightSideView(root);
+        for(Integer i:list){
+            System.out.print(i+" ");
+        }
+        List<Integer> list2 = new BinarayTreeRightSideView().f(root);
+        for(Integer i:list2){
+            System.out.print(i+" ");
+        }
+
     }
 
     public List<Integer> rightSideView(TreeNode root) {
@@ -56,7 +83,7 @@ public class BinarayTreeRightSideView {
         dfs(root, 0);
         return list;
     }
-
+    //方法有创意
     private void dfs(TreeNode node, int height) {
         if (node != null) {
             if (height > maxHeigh) {

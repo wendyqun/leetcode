@@ -16,6 +16,13 @@ public class MergeSortedArray {
             System.out.println(i);
     }
 
+    /**
+     * 不需要新空间,只需要从尾部插入
+     * @param nums1
+     * @param m
+     * @param nums2
+     * @param n
+     */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int i = m + n - 1, j = m - 1, k = n - 1;
         while (j >= 0 && k >= 0)

@@ -1,0 +1,83 @@
+   最直观的思路：通过前序遍历的方式遍历二叉树，每遍历至一个节点，将当前节点的权值记录在数组中，并更新记录当前路径和的变量curSum，同时判断更新后的curSum与    sum是否相等，若相等则res加1。
+
+   此时的curSum为从根节点到当前节点的路径之和。至于这条路径上的子路径是否满足题意，则需将数组中的权值在curSum中一个个减掉，每剪掉一个，判断一次当前权值和是否与sum相等，若相等则res加1。此处需注意不能将数组中的权值完全减掉，最后应保留一个，因为全部去掉所得curSum为0，若题中所给的sum刚好为0，则判断相等，但不符合题意。
+
+ /**
+  * Definition for a binary tree node.
+  * struct TreeNode {
+  *     int val;
+  *     TreeNode *left;
+  *     TreeNode *right;
+  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+  * };
+  */
+ class Solution {
+ public:
+     int pathSum(TreeNode* root, int sum) {
+         int res = 0;
+         vector<TreeNode*> vec;
+         findPath(root, sum, 0, res, vec);
+
+         return res;
+     }
+
+     void findPath(TreeNode* node, int sum, int curSum, int &res, vector<TreeNode*> &vec) {
+         if (!node) return;
+         curSum += node->val;
+         vec.push_back(node);
+
+         if (sum == curSum) res++;
+         int tmp = curSum;
+         for (int i = 0; i < vec.size() - 1; i++) {
+             tmp -= vec[i]->val;
+             if (tmp == sum) res++;
+         }
+
+         findPath(node->left, sum, curSum, res, vec);
+         findPath(node->right, sum, curSum, res, vec);
+
+         vec.pop_back();
+     }
+ };
+  2. 优化算法，用hash表记录当前遍历路径中的子路径权值和对应出现的次数。
+
+  若sum为从根节点到某x节点的路径权值和，则遍历至节点x时，当前的路径和curSum恰好与sum相等，则res = m[curSum - sum] = m[0] = 1;
+  若sum为某段子路径权值和，如：x1->x2->x3->x4......中sum等于节点x3与节点x4的权值和，即sum = sumx3+x4。则遍历至x2时， m[curSum]++; 处已经记录了m[curSum] = m[sumx1+x2] = 1,便利至x4时curSum = sumx1+x2+x3+x4,则res = m[curSum - sum] = m[sumx1+x2+x3+x4 - sumx3+x4] = m[sumx1+x2] = 1。
+ class Solution {
+ public:
+     int pathSum(TreeNode* root, int sum) {
+         unordered_map<int, int> m;
+         m[0] = 1;
+         int res = findPath(root, sum, 0, m);
+
+         return res;
+     }
+
+     int findPath(TreeNode* node, int sum, int curSum, unordered_map<int, int> &m) {
+         if (!node) return 0;
+         curSum += node->val;
+
+         int res = m[curSum - sum];
+         m[curSum]++;
+         res += (findPath(node->left, sum, curSum, m) + findPath(node->right, sum, curSum, m));
+         m[curSum]--;
+
+         return res;
+     }
+ };
+  3. 最简洁的方法，以每一个节点作为路径根节点进行前序遍历，查找每一条路径的权值和与sum是否相等。
+
+ class Solution {
+ public:
+     int pathSum(TreeNode* root, int sum) {
+         if (!root) return 0;
+         int res = findPath(root, 0, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
+         return res;
+     }
+
+     int findPath(TreeNode* node, int curSum, int sum) {
+         if (!node) return 0;
+         curSum += node->val;
+         return (curSum == sum) + findPath(node->left, curSum, sum) + findPath(node->right, curSum, sum);
+     }
+ };

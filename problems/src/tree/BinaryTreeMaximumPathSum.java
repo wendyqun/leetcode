@@ -4,13 +4,15 @@ package tree;
  * Created by gouthamvidyapradhan on 03/04/2017.
  * Given a binary tree, find the maximum path sum.
  * <p>
- * For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.
+ * For this problem, a path is defined as any sequence of nodes
+ * from some starting node to any node in the tree along the parent-child connections.
+ * The path must contain at least one node and does not need to go through the root.
  * <p>
  * For example:
  * Given the below binary tree,
  * <p>
- * 1
- * / \
+ *   1
+ *  / \
  * 2   3
  * Return 6.
  */

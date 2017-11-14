@@ -67,6 +67,8 @@ public class ZigZagTraversal {
      * @param node
      */
     public static void myFun(TreeNode node){
+        if(node==null)
+            return;
         LinkedList<TreeNode> list=new LinkedList<>();
         list.add(node);
         boolean left2right=true;

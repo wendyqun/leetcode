@@ -17,13 +17,14 @@ public class RotateMatrix {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        int[][] A = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        new RotateMatrix().rotate(A);
+        int[][] A = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9},{7, 8, 9}};
+        System.out.println(System.currentTimeMillis());
+        /*new RotateMatrix().rotate(A);
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < A[0].length; j++) {
                 System.out.println(A[i][j]);
             }
-        }
+        }*/
     }
 
     public void rotate(int[][] matrix) {

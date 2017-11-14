@@ -7,24 +7,24 @@ package tree;
  * For example,
  * Given
  * <p>
- * 1
- * / \
- * 2   5
- * / \   \
+ *     1
+ *    / \
+ *   2   5
+ *  / \   \
  * 3   4   6
  * <p>
  * The flattened tree should look like:
  * 1
- * \
- * 2
- * \
- * 3
- * \
- * 4
- * \
- * 5
- * \
- * 6
+ *  \
+ *   2
+ *    \
+ *     3
+ *      \
+ *       4
+ *        \
+ *         5
+ *          \
+ *           6
  * <p>
  * Solution: Do a pre-order traversal and maintain head and tail of a linked list at each recursive step.
  * i. Join the current node to the head of the left sub-list to form the current node as the new head.
@@ -56,14 +56,55 @@ public class FlattenBinaryTree {
         }
     }
 
+    public void myFun(TreeNode root){
+        if(root==null)
+            return;
+        TreeNode right=root.right;
+        root.right=root.left;
+        root.left=null;
+        myFun(root.right);
+        TreeNode t=root;
+        while(t.right!=null){
+            t=t.right;
+        }
+        t.right=right;
+        myFun(t.right);
+    }
+
+
+
+
+
+
     public static void main(String[] args) throws Exception {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(2);
         root.right = new TreeNode(1);
         new FlattenBinaryTree().flatten(root);
-        System.out.print(root.val + " ");
+/*        System.out.print(root.val + " ");
         System.out.print(root.right.val + " ");
-        System.out.print(root.right.right.val);
+        System.out.print(root.right.right.val);*/
+        //=====================================//
+        TreeNode r=new TreeNode(1);
+        r.left=new TreeNode(2);
+        r.right=new TreeNode(5);
+        r.left.left=new TreeNode(3);
+        r.left.right=new TreeNode(4);
+        r.right.right=new TreeNode(6);
+        new FlattenBinaryTree().myFun(r);
+        while(r.right!=null){
+            System.out.println(r.val);
+            r=r.right;
+        }
+        
+
+
+
+
+
+
+
+
     }
 
     public void flatten(TreeNode root) {

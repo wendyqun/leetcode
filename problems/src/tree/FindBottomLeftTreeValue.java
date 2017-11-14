@@ -7,7 +7,7 @@ package tree;
  * Example 1:
  * Input:
  * <p>
- * 2
+ *  2
  * / \
  * 1   3
  * <p>
@@ -16,7 +16,7 @@ package tree;
  * Example 2:
  * Input:
  * <p>
- * 1
+ *  1
  * / \
  * 2   3
  * /   / \
@@ -29,7 +29,7 @@ package tree;
  * Note: You may assume the tree (i.e., the given root node) is not NULL.
  */
 public class FindBottomLeftTreeValue {
-    private int max = 0, result;
+    private static int max = 0, result;
 
     public static class TreeNode {
         int val;
@@ -41,6 +41,24 @@ public class FindBottomLeftTreeValue {
         }
     }
 
+    /**
+     * 先序遍历
+     * @param root
+     * @param deep
+     */
+    public  static void myFun(TreeNode root,int deep){
+        if(root==null){
+            return;
+        }
+        deep=deep+1;
+        if(deep>max){
+            max=deep;
+            result=root.val;
+        }
+        myFun(root.left,deep);
+        myFun(root.right,deep);
+    }
+
     public static void main(String[] args) throws Exception {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -49,7 +67,9 @@ public class FindBottomLeftTreeValue {
         root.right.left = new TreeNode(5);
         root.right.left.left = new TreeNode(7);
         root.right.right = new TreeNode(6);
-        System.out.println(new FindBottomLeftTreeValue().findBottomLeftValue(root));
+        new FindBottomLeftTreeValue().myFun(root,0);
+        System.out.println(result);
+        //System.out.println(new FindBottomLeftTreeValue().findBottomLeftValue(root));
     }
 
     public int findBottomLeftValue(TreeNode root) {

@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -13,7 +14,8 @@ import java.util.Queue;
  * TreeLinkNode *right;
  * TreeLinkNode *next;
  * }
- * Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+ * Populate each next pointer to point to its next right node.
+ * If there is no next right node, the next pointer should be set to NULL.
  * <p>
  * Initially, all next pointers are set to NULL.
  * <p>
@@ -23,9 +25,9 @@ import java.util.Queue;
  * You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
  * For example,
  * Given the following perfect binary tree,
- * 1
- * /  \
- * 2    3
+ *     1
+ *   /  \
+ *  2    3
  * / \  / \
  * 4  5  6  7
  * After calling your function, the tree should look like:
@@ -49,6 +51,28 @@ public class NextRightPointer {
         }
     }
 
+    public void myFun(TreeLinkNode root){
+        LinkedList<TreeLinkNode> list=new LinkedList<>();
+        list.add(root);
+        while(!list.isEmpty()){
+            LinkedList<TreeLinkNode> tmpList=new LinkedList<>();
+            for(TreeLinkNode node:list){
+                if(node.left!=null)
+                    tmpList.add(node.left);
+                if(node.right!=null)
+                    tmpList.add(node.right);
+                TreeLinkNode pre=null;
+                while(!list.isEmpty()){
+                    TreeLinkNode cur=list.removeLast();
+                    cur.next=pre;
+                    pre=cur;
+                }
+                list=tmpList;
+            }
+        }
+    }
+
+
     public static class TreeLinkNode {
         int val;
         TreeLinkNode left, right, next;
@@ -62,7 +86,8 @@ public class NextRightPointer {
         TreeLinkNode node = new TreeLinkNode(2);
         node.left = new TreeLinkNode(1);
         node.right = new TreeLinkNode(3);
-        new NextRightPointer().connect(node);
+        //new NextRightPointer().connect(node);
+        new NextRightPointer().myFun(node);
         System.out.println(node.next);
         System.out.println(node.left.next.val);
         System.out.println(node.right.next);

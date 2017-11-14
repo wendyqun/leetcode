@@ -2,7 +2,8 @@ package tree;
 
 /**
  * Created by gouthamvidyapradhan on 14/05/2017.
- * Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
+ * Given a binary search tree and a node in it,
+ * find the in-order successor of that node in the BST.
  * <p>
  * Note: If the given node has no in-order successor in the tree, return null.
  * <p>
@@ -19,6 +20,29 @@ public class InorderSuccessorInBST {
         TreeNode(int x) {
             val = x;
         }
+    }
+    TreeNode val;
+    boolean found=false;
+
+    /**
+     * 那就直接来中序遍历好了
+     * 如果遍历到target节点，那么就标记下
+     * 直到再次中序遍历到下一个节点，就打印出来
+     * @param root
+     * @param target
+     */
+    public void myFun(TreeNode root,TreeNode target){
+        if(root==null)
+            return;
+        myFun(root.left,target);
+        if(found==true){
+            val=root;
+            found=false;
+        }
+        if(root==target){
+            found=true;
+        }
+        myFun(root.right,target);
     }
 
     /**
@@ -37,10 +61,13 @@ public class InorderSuccessorInBST {
         root.right.left.left = new TreeNode(12);
         root.right.left.right = new TreeNode(14);
         root.right.right = new TreeNode(17);
-        TreeNode ans = new InorderSuccessorInBST().inorderSuccessor(root, root.right.left.right);
+        TreeNode ans = new InorderSuccessorInBST().inorderSuccessor(root, root/*.right.left.right*/);
         if (ans != null)
             System.out.println(ans.val);
         else System.out.println(ans);
+        InorderSuccessorInBST t=new InorderSuccessorInBST();
+        t.myFun(root,root/*.right.left.right*/);
+        System.out.println(t.val.val);
     }
 
     /**

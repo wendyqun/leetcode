@@ -2,7 +2,10 @@ package array;
 
 /**
  * Created by gouthamvidyapradhan on 25/03/2017.
- * Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).
+ * Given a non-empty array of integers,
+ * return the third maximum number in this array.
+ * If it does not exist, return the maximum number.
+ * The time complexity must be in O(n).
  * <p>
  * Example 1:
  * Input: [3, 2, 1]
@@ -15,7 +18,8 @@ package array;
  * <p>
  * Output: 2
  * <p>
- * Explanation: The third maximum does not exist, so the maximum (2) is returned instead.
+ * Explanation: The third maximum does not exist,
+ * so the maximum (2) is returned instead.
  * Example 3:
  * Input: [2, 2, 3, 1]
  * <p>
@@ -25,6 +29,32 @@ package array;
  * Both numbers with value 2 are both considered as second maximum.
  */
 public class ThirdMaximumNumber {
+
+    public int[] myFun(int [] array,int k){
+        int res[]=new int[k];
+        for(int i=0;i<k;i++){
+            res[i]=Integer.MIN_VALUE;
+        }
+        int len=array.length;
+        for(int i=0;i<len;i++){
+            int v=array[i];
+            for(int j=0;j<k;j++){
+                if(res[j]>v)
+                    continue;
+                else{
+                    int m=k-1;
+                    for(;m>j;m--){
+                        res[m]=res[m-1];
+                    }
+                    res[m]=v;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+
+
     /**
      * Main method
      *
@@ -32,8 +62,12 @@ public class ThirdMaximumNumber {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        int[] a = {1, 2};
-        System.out.println(new ThirdMaximumNumber().thirdMax(a));
+        int[] a = {1, 2,2,2,4,5,2,2,3};
+        //System.out.println(new ThirdMaximumNumber().thirdMax(a));
+        int res[]=new ThirdMaximumNumber().myFun(a,4);
+        for(int i:res){
+            System.out.print(i+",");
+        }
     }
 
     public int thirdMax(int[] nums) {

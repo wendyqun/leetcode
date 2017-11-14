@@ -44,7 +44,7 @@ public class ValidBinarySearchTree {
      * 左子树的最大值要小于根节点
      * 右子树的最小值要大于根节点
      *
-     * 叶子节点的最大值和最小值是他本身，叶子节点不进入递归
+     * 叶子节点的最大值和最小值是他本身，叶子节点不进入递归.
      *
      * 函数有两个返回值，一个是boolean ，一个是使用Data 借助返回本子树的最大值或者最小值（根据left参数判断）
      * @param node
@@ -115,6 +115,19 @@ public class ValidBinarySearchTree {
         return validate(root, range);
     }
 
+    /**
+     * 先序遍历，从上向下
+     * 使用Range记录每个节点的范围，每个节点应该大于Range.low,小于Range.high
+     * 由于最左侧的节点没有最小节点可比较，所以初始化为Integer.MIN_VALUE
+     * 最右侧的节点没有最大节点可比较，所以初始化为Integer.MAX_VALUE
+     *
+     *
+     *
+     *
+     * @param root
+     * @param range
+     * @return
+     */
     private boolean validate(TreeNode root, Range range) {
         if ((root.val > range.low) && (root.val < range.high)) {
             long temp = range.high;

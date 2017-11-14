@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ *
+ * 没看懂啊,确实难着我了，看PathSumIII3.java吧
+ * http://www.cnblogs.com/VickyWang/p/6038386.html
+ * 这篇文章思路讲的不错
+ * http://www.cnblogs.com/grandyang/p/6007336.html
+ *
  * Created by gouthamvidyapradhan on 08/04/2017.
  * You are given a binary tree in which each node contains an integer value.
  * <p>

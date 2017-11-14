@@ -25,6 +25,29 @@ public class PostorderToBT {
         }
     }
 
+    public TreeNode myFun(int postOrder[],int inorder[]){
+        int postLen=postOrder.length;
+        int inLen=inorder.length;
+        return sub(postOrder,0,postLen-1,inorder,0,inLen-1);
+    }
+
+    public TreeNode sub(int postOrder[],int ps,int pe,int inOrder[],int ins,int ine){
+        if(ins>ine|| ps>pe)
+            return null;
+        int rootIndex=pe;
+        int rootVal=postOrder[pe];
+        for(int i=ins;i<=ine;i++){
+            if(inOrder[i]==rootVal){
+                rootIndex=i;
+            }
+        }
+        TreeNode root=new TreeNode(rootVal);
+        int len=rootIndex-ins;
+        root.left=sub(postOrder,ps,ps+len-1,inOrder,ins,rootIndex-1);
+        root.right=sub(postOrder,ps+len,pe-1,inOrder,rootIndex+1,ine);
+        return root;
+    }
+
     /**
      * Main method
      *
@@ -34,8 +57,12 @@ public class PostorderToBT {
     public static void main(String[] args) throws Exception {
         int in[] = new int[]{1, 2};
         int post[] = new int[]{1, 2};
+        int myIn[]={4,2,5,1,6,3,7};
+        int myPost[]={4,5,2,6,7,3,1};
         TreeNode root = new PostorderToBT().buildTree(in, post);
         new PostorderToBT().preorderPrint(root);
+        TreeNode myRoot=new PostorderToBT().myFun(myPost,myIn);
+        System.out.println(myRoot);
     }
 
     public TreeNode buildTree(int[] inorder, int[] postorder) {

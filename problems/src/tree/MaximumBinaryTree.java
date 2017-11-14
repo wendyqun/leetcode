@@ -13,13 +13,13 @@ package tree;
  * Input: [3,2,1,6,0,5]
  * Output: return the tree root node representing the following tree:
  * <p>
- * 6
- * /   \
+ *    6
+ *  /   \
  * 3     5
- * \    /
- * 2  0
- * \
- * 1
+ *  \    /
+ *   2  0
+ *    \
+ *     1
  * <p>
  * Note:
  * The size of the given array will be in the range [1,1000].
@@ -36,6 +36,25 @@ public class MaximumBinaryTree {
         }
     }
 
+    public TreeNode myFun(int array[],int start, int end){
+        if(start>end)
+            return null;
+        TreeNode node=new TreeNode(-1);
+        int index=start;
+        for(int i=start;i<=end;i++){
+            if(array[i]>array[index]){
+                index=i;
+            }
+        }
+        node.val=array[index];
+        TreeNode left=myFun(array,start,index-1);
+        TreeNode right=myFun(array,index+1,end);
+        node.left=left;
+        node.right=right;
+        return node;
+    }
+
+
     private int[][] max;
 
     /**
@@ -47,7 +66,9 @@ public class MaximumBinaryTree {
     public static void main(String[] args) throws Exception {
         int[] nums = {3, 2, 1, 6, 0, 5};
         TreeNode root = new MaximumBinaryTree().constructMaximumBinaryTree(nums);
+        TreeNode rootMy=new MaximumBinaryTree().myFun(nums,0,nums.length-1);
         System.out.println(root.val); //print root
+        System.out.println(rootMy.val);
     }
 
     public TreeNode constructMaximumBinaryTree(int[] nums) {

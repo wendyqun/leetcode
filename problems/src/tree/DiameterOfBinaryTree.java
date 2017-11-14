@@ -1,6 +1,7 @@
 package tree;
 
 /**
+ * 思维进入了陷阱，联想到了暴力破解，采用先序遍历，求每一个节点的路径，复杂度飙升
  * Created by gouthamvidyapradhan on 18/10/2017.
  *
  * Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is
@@ -43,6 +44,13 @@ public class DiameterOfBinaryTree {
         return max;
     }
 
+    /**
+     * 采用后续遍历
+     * 其实还是没有领略的后续遍历的好处，其实一旦盯住某个节点时，他的左右子树已经处理完了。
+     * 而左右子树的处理结果就是返回他们各自的深度。
+     * @param node
+     * @return
+     */
     private int dfs(TreeNode node){
         if(node != null){
             int left = dfs(node.left);

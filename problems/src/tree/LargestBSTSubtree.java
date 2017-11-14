@@ -3,7 +3,8 @@ package tree;
 /**
  * Created by gouthamvidyapradhan on 08/05/2017.
  * <p>
- * Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), where largest means subtree with largest number of nodes in it.
+ * Given a binary tree, find the largest subtree which is a Binary Search Tree (BST),
+ * where largest means subtree with largest number of nodes in it.
  * <p>
  * Note:
  * A subtree must include all of its descendants.
@@ -19,7 +20,8 @@ package tree;
  * Follow up:
  * Can you figure out ways to solve it with O(n) time complexity?
  * <p>
- * Solution: The below solution works with O(n). Validate the BST property from the leaf node and increment the count, as soon as a violation
+ * Solution: The below solution works with O(n).
+ * Validate the BST property from the leaf node and increment the count, as soon as a violation
  * of BST property is found terminate the count.
  */
 public class LargestBSTSubtree {
