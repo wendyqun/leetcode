@@ -1,6 +1,8 @@
 package tree;
 
 /**
+ * 时隔两月，又忘了
+ * Flatten['flæt(ə)n] 变平 平坦
  * Created by gouthamvidyapradhan on 04/07/2017.
  * Given a binary tree, flatten it to a linked list in-place.
  * <p>
@@ -56,6 +58,13 @@ public class FlattenBinaryTree {
         }
     }
 
+    /**
+     * 1）将左子树挂到根节点的右子树上，右子树的root先保存在临时变量
+     * 2）然后递归处理根节点的右子树
+     * 3）处理完右子树（原左子树）后找到右子树最右端的节点（通过while循环）
+     * 4）将临时节点挂到最右端的树上，再次递归处理临时节点所在的子树
+     * @param root
+     */
     public void myFun(TreeNode root){
         if(root==null)
             return;
@@ -71,19 +80,18 @@ public class FlattenBinaryTree {
         myFun(t.right);
     }
 
-
-
-
-
-
     public static void main(String[] args) throws Exception {
-        TreeNode root = new TreeNode(3);
+        TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
-        root.right = new TreeNode(1);
+        root.left.right=new TreeNode(4);
+        root.left.left = new TreeNode(3);
+        root.right=new TreeNode(5);
+        root.right.right=new TreeNode(6);
         new FlattenBinaryTree().flatten(root);
-/*        System.out.print(root.val + " ");
-        System.out.print(root.right.val + " ");
-        System.out.print(root.right.right.val);*/
+        /*while(root!=null){
+            System.out.println(root.val);
+            root=root.right;
+        }*/
         //=====================================//
         TreeNode r=new TreeNode(1);
         r.left=new TreeNode(2);
@@ -91,19 +99,12 @@ public class FlattenBinaryTree {
         r.left.left=new TreeNode(3);
         r.left.right=new TreeNode(4);
         r.right.right=new TreeNode(6);
-        new FlattenBinaryTree().myFun(r);
-        while(r.right!=null){
+        new FlattenBinaryTree().postOrder(r);
+        while(r!=null){
             System.out.println(r.val);
             r=r.right;
         }
-        
-
-
-
-
-
-
-
+        //=====================================//
 
     }
 
@@ -131,6 +132,29 @@ public class FlattenBinaryTree {
         }
         node.left = null;
         return lNode;
+    }
+
+    /**
+     * 采用后续遍历，先将左右子节点处理平整
+     * 最后，将左子树的最后一个节点与右子树的第一个节点焊接
+     * 还是这个好理解
+     * @param node
+     * @return
+     */
+    public TreeNode postOrder(TreeNode node) {
+        if (node == null) return null;
+        TreeNode left = postOrder(node.left);
+        TreeNode right = postOrder(node.right);
+        if(left!=null){
+            node.right=left;
+            node.left=null;
+            TreeNode bottomRight=left;
+            while(bottomRight.right!=null){
+                bottomRight=bottomRight.right;
+            }
+            bottomRight.right=right;
+        }
+        return node;
     }
 
 }

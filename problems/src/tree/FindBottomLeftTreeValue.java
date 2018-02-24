@@ -42,6 +42,25 @@ public class FindBottomLeftTreeValue {
     }
 
     /**
+     * 采用中序遍历
+     * @param root
+     */
+    public void myFun1(TreeNode root){
+        f(root,0);
+    }
+
+    public void f(TreeNode root, int height){
+        if(root!=null){
+            f(root.left,height+1);
+            if(height>max){
+                max=height;
+                result=root.val;
+            }
+            f(root.right,height+1);
+        }
+    }
+
+    /**
      * 先序遍历
      * @param root
      * @param deep
@@ -67,7 +86,8 @@ public class FindBottomLeftTreeValue {
         root.right.left = new TreeNode(5);
         root.right.left.left = new TreeNode(7);
         root.right.right = new TreeNode(6);
-        new FindBottomLeftTreeValue().myFun(root,0);
+        root.right.right.right=new TreeNode(8);
+        new FindBottomLeftTreeValue().myFun1(root);
         System.out.println(result);
         //System.out.println(new FindBottomLeftTreeValue().findBottomLeftValue(root));
     }
