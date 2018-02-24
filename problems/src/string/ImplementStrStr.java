@@ -10,7 +10,7 @@ package string;
  */
 public class ImplementStrStr {
     public static void main(String[] args) throws Exception {
-        System.out.println(new ImplementStrStr().strStr("AABB", ""));
+        System.out.println(new ImplementStrStr().strStr("AABB", "AB"));
     }
 
     public int strStr(String haystack, String needle) {

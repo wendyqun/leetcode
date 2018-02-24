@@ -18,7 +18,8 @@ public class ExcelSheetColumnNumber {
     String CONST = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static void main(String[] args) throws Exception {
-        System.out.println(new ExcelSheetColumnNumber().titleToNumber("AAB"));
+        System.out.println(new ExcelSheetColumnNumber().titleToNumber("AAC"));
+        System.out.println(new ExcelSheetColumnNumber().titleToNumber("AAC"));
     }
 
     public int titleToNumber(String s) {
@@ -29,6 +30,15 @@ public class ExcelSheetColumnNumber {
             int pos = CONST.indexOf(c) + 1;
             int pow = (int) Math.pow(26, j++);
             total += (pow * pos);
+        }
+        return total;
+    }
+
+    public int myFun(String s){
+        int total=0;
+        int j=0;
+        for(int i=s.length()-1;i>=0;i--){
+            total=total+(int)Math.pow(26,j++)+CONST.indexOf(s.charAt(i));
         }
         return total;
     }

@@ -2,9 +2,11 @@ package string;
 
 /**
  * Created by gouthamvidyapradhan on 21/03/2017.
- * Given an input string, reverse the string word by word. A word is defined as a sequence of non-space characters.
+ * Given an input string, reverse the string word by word.
+ * A word is defined as a sequence of non-space characters.
  * <p>
- * The input string does not contain leading or trailing spaces and the words are always separated by a single space.
+ * The input string does not contain leading or trailing spaces
+ * and the words are always separated by a single space.
  * <p>
  * For example,
  * Given s = "the sky is blue",
@@ -20,11 +22,46 @@ public class ReverseWordsII {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        char[] c = {'t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e'};
-        new ReverseWordsII().reverseWords(c);
+        char[] c = {'t', 'h', 'e', ' ',' ', ' ',' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e'};
+        //new ReverseWordsII().reverseWords(c);
+        new ReverseWordsII().myFun(c);
         for (char i : c)
             System.out.print(i);
     }
+
+
+    public void myFun(char[] s){
+        //先翻转一次
+        myRev(s,0,s.length-1);
+        int start=0;
+        int end;
+        while(start<s.length){
+            end=start;
+            while(end<s.length){
+                if(end==s.length-1||s[end+1]==' '){
+                    break;
+                }
+                end++;
+            }
+            myRev(s,start,end);
+            start=end+2;
+        }
+    }
+
+    public void myRev(char[] s,int start,int end){
+        int i=start;
+        int j=end;
+        char tmp;
+        while(i<j){
+            tmp=s[i];
+            s[i]=s[j];
+            s[j]=tmp;
+            i++;
+            j--;
+        }
+    }
+
+
 
     public void reverseWords(char[] s) {
         for (int i = 0, j = s.length - 1; i < j; i++, j--) {

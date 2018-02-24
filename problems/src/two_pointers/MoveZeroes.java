@@ -3,7 +3,8 @@ package two_pointers;
 /**
  * Created by gouthamvidyapradhan on 13/06/2017.
  * Accepted
- * Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+ * Given an array nums, write a function to move all 0's to the end of it
+ * while maintaining the relative order of the non-zero elements.
  * <p>
  * For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].
  * <p>
@@ -19,6 +20,10 @@ public class MoveZeroes {
             System.out.print(n);
     }
 
+    /**
+     * 聪明，将非0值向前移动，完毕后只需要将剩余的用0填充
+     * @param nums
+     */
     public void moveZeroes(int[] nums) {
         int i = 0;
         for (int j = 0, l = nums.length; j < l; ) {
@@ -27,7 +32,7 @@ public class MoveZeroes {
             else {
                 int temp = nums[i];
                 nums[i] = nums[j];
-                nums[j] = temp;
+                nums[j] = 0;
                 i++;
                 j++;
             }

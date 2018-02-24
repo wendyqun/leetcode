@@ -28,9 +28,16 @@ public class PermutationInString {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception{
-        System.out.println(new PermutationInString().checkInclusion("ab", "eidboaoo"));
+        System.out.println(new PermutationInString().checkInclusion("obd", "eidboaoo"));
     }
 
+    /**
+     * 类似于滑动窗口
+     * 而S1\S2 数组相当于map啦,每次比较map是否一致
+     * @param s1
+     * @param s2
+     * @return
+     */
     public boolean checkInclusion(String s1, String s2) {
         if(s2.length() < s1.length()) return false;
         for(int i = 0, l = s1.length(); i < l; i ++){

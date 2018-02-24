@@ -31,10 +31,10 @@ public class MinSortedRotatedArray {
             if (mid > 0 && nums[mid] < nums[mid - 1])
                 return nums[mid];
             if (nums[low] > nums[mid])
-                high = mid - 1;
+                high = mid - 1;//或者 high=mid;
             else if (nums[high] < nums[mid])
-                low = mid + 1;
-            else high = mid - 1;
+                low = mid + 1; //或者low=mid
+            else high = mid - 1;//或者 high=mid
         }
         return nums[low];
     }

@@ -5,7 +5,8 @@ import java.util.Map;
 
 /**
  * Created by gouthamvidyapradhan on 04/07/2017.
- * In the "100 game," two players take turns adding, to a running total, any integer from 1..10. The player who first causes the running total to reach or exceed 100 wins.
+ * In the "100 game," two players take turns adding, to a running total, any integer from 1..10.
+ * The player who first causes the running total to reach or exceed 100 wins.
  * <p>
  * What if we change the game so that players cannot re-use integers?
  * <p>

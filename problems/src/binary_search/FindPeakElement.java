@@ -21,7 +21,7 @@ package binary_search;
  */
 public class FindPeakElement {
     public static void main(String[] args) throws Exception {
-        int[] nums = {3, 4, 3, 2, 1};
+        int[] nums = {1,2,3,4, 1,5,2,1,0};
         System.out.println(new FindPeakElement().findPeakElement(nums));
     }
 

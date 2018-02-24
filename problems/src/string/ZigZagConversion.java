@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * Created by gouthamvidyapradhan on 19/05/2017.
- * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+ * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this:
+ * (you may want to display this pattern in a fixed font for better legibility)
  * <p>
  * P   A   H   N
  * A P L S I I G

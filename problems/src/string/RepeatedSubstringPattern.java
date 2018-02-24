@@ -2,7 +2,9 @@ package string;
 
 /**
  * Created by gouthamvidyapradhan on 25/03/2017.
- * Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
+ * Given a non-empty string check if it can be constructed by taking a substring of it
+ * and appending multiple copies of the substring together.
+ * You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
  * <p>
  * Example 1:
  * Input: "abab"
@@ -32,6 +34,13 @@ public class RepeatedSubstringPattern {
         System.out.println(new RepeatedSubstringPattern().repeatedSubstringPattern("a"));
     }
 
+    /**
+     * 我以为该题会先判断字符串的长度值是不是质数, 如果是质数就返回false呢
+     * 后来一想,如果该字符串只包含一种字符,那也是可以的啊
+     *
+     * @param s
+     * @return
+     */
     public boolean repeatedSubstringPattern(String s) {
         boolean found;
         for (int i = 1, l = s.length(); i < l; i++) {

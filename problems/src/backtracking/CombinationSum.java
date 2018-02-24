@@ -5,7 +5,8 @@ import java.util.List;
 
 /**
  * Created by pradhang on 3/14/2017.
- * Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+ * Given a set of candidate numbers (C) (without duplicates) and a target number (T),
+ * find all unique combinations in C where the candidate numbers sums to T.
  * <p>
  * The same repeated number may be chosen from C unlimited number of times.
  * <p>
@@ -27,9 +28,15 @@ public class CombinationSum {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        int[] candidates = {2, 3, 6, 7};
+        int[] candidates = {2,  7,3, 6};
 
         List<List<Integer>> result = new CombinationSum().combinationSum(candidates, 7);
+        for(List<Integer> list:result){
+            for(Integer i:list){
+                System.out.print(i+" ");
+            }
+            System.out.println();
+        }
     }
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {

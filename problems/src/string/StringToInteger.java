@@ -16,7 +16,7 @@ public class StringToInteger {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        System.out.println(new StringToInteger().myAtoi("    2147483649a sdfasdf"));
+        System.out.println(new StringToInteger().myAtoi("    2147483649a999 sdfasdf888"));
     }
 
     public int myAtoi(String str) {

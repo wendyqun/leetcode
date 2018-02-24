@@ -35,6 +35,15 @@ public class Subsets {
         List<List<Integer>> result = new Subsets().subsets(n);
     }
 
+    /**
+     * 采用非递归
+     * 首先初始化一个空集合
+     * 从第一个节点开始，向已有集合里添加该节点，得到新的一批集合，此时新集合和原来的集合合并为已有集合
+     * 处理下一个节点，再次向已有集合添加该节点，得到新的一批集合，再次合并新集合与原有集合
+     * 直到处理完所有节点
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         result.add(new ArrayList<>()); //empty subset

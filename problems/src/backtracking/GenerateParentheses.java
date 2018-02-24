@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * 思路在这里
+ * http://www.mamicode.com/info-detail-1064376.html
+ *
+ *
  * Created by gouthamvidyapradhan on 24/06/2017.
  * Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
  * <p>

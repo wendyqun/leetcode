@@ -25,8 +25,24 @@ public class BestTimeToBuyAndSellStocks {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        int[] prices = {1, 1, 1, 1, 1};
+        int[] prices = {7, 1, 5, 3, 6, 4};
         System.out.println(new BestTimeToBuyAndSellStocks().maxProfit(prices));
+        System.out.println(new BestTimeToBuyAndSellStocks().myFun(prices));
+    }
+
+    public int myFun(int [] prices){
+        int buy=0;
+        int sell=0;
+        for(int i=0;i<prices.length;i++){
+            if(prices[buy]>prices[i]){
+                buy=i;
+                sell=i;
+            }
+            if(prices[sell]<prices[i]){
+                sell=i;
+            }
+        }
+        return prices[sell]-prices[buy];
     }
 
     public int maxProfit(int[] prices) {

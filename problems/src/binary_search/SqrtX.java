@@ -8,7 +8,7 @@ package binary_search;
  */
 public class SqrtX {
     public static void main(String[] args) throws Exception {
-        System.out.println(new SqrtX().mySqrt(Integer.MAX_VALUE));
+        System.out.println(new SqrtX().mySqrt(16));
     }
 
     public int mySqrt(int x) {

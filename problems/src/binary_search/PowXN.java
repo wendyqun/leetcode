@@ -24,6 +24,16 @@ public class PowXN {
         return solve(n < 0 ? (1 / x) : x, N < 0 ? (N * -1) : N);
     }
 
+    /**
+     * 二分法
+     * 举个例子: 2的9次方=2的4次方*2的4次方*2的1次方
+     *          2的4次方=2的2次方*2的2次方
+     *          2的2次方=2的1次方*2的1次方
+     *          2的1次方=直接返回2
+     * @param x
+     * @param n
+     * @return
+     */
     public double solve(double x, long n) {
         if (n == 1) return x;
         double val = solve(x, n / 2);

@@ -33,6 +33,7 @@ public class SearchForARange {
     }
 
     /**
+     * 即使找到目标元素后，还需要继续查找，找到左边界或者右边界
      * Find index
      *
      * @param nums         nums array

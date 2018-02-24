@@ -26,6 +26,13 @@ public class FirstUniqueCharacterInAString {
         System.out.println(new FirstUniqueCharacterInAString().firstUniqChar("loveleetcode"));
     }
 
+    /**
+     * 开始想到的是LinkedHashMap
+     * 但是这里是字符
+     * 充分利用字符的特色，字符可以当数字
+     * @param s
+     * @return
+     */
     public int firstUniqChar(String s) {
         if (s == null || s.isEmpty()) return -1;
 

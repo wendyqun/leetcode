@@ -26,10 +26,17 @@ public class ThreeSum {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        int[] nums = {-1, 0, 1, 2, -1, -4, -1, 0, 1, 2, -1, -4, -1, 0, 1, 2, -1, -4, -1, 0, 1, 2, -1, -4, -1, 0, 1, 2, -1, -4, -1, 0, 1, 2, -1, -4, -1, 0, 1, 2, -1, -4, -1, 0, 1, 2, -1, -4};
+        int[] nums = {-1, 0, 1, 2, -1, -4,-1,3};
         System.out.println(new ThreeSum().threeSum(nums));
     }
 
+    /**
+     * 简单思路
+     * 1）排序
+     * 2）遍历数组，先固定第一个值，利用双指针求另外两个之和为（target-第一个值）
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         if (nums.length < 3) return result;

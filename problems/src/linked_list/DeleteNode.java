@@ -21,11 +21,18 @@ public class DeleteNode {
         node.next = new ListNode(2);
         node.next.next = new ListNode(3);
         node.next.next.next = new ListNode(4);
-        new DeleteNode().deleteNode(node.next.next);
+        new DeleteNode().myFun(node.next.next);
         while (node != null) {
             System.out.println(node.val);
             node = node.next;
         }
+    }
+
+    public void myFun(ListNode node){
+        ListNode next=node.next;
+        ListNode nextnext=next.next;
+        node.val=next.val;
+        node.next=nextnext;
     }
 
     public void deleteNode(ListNode node) {
