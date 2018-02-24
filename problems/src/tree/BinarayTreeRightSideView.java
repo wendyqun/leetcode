@@ -26,8 +26,9 @@ public class BinarayTreeRightSideView {
             val = x;
         }
     }
-
+    //比较容易想到的方法
     public static List<Integer> f(TreeNode root){
+        //广度优先遍历，这里使用了LinkedList做为队列，具有极大的方便性
         LinkedList<TreeNode> queue=new LinkedList<>();
         queue.offer(root);
         List<Integer> resList=new ArrayList<>();
@@ -84,6 +85,7 @@ public class BinarayTreeRightSideView {
         return list;
     }
     //方法有创意
+    //采用先序遍历，根节点->右子节点->左子节点的遍历顺序
     private void dfs(TreeNode node, int height) {
         if (node != null) {
             if (height > maxHeigh) {
