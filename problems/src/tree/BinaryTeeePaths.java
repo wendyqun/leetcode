@@ -40,9 +40,33 @@ public class BinaryTeeePaths {
     public List<String> myFun(TreeNode root){
         LinkedList<String> tmpList=new LinkedList<>();
         List<String> resList=new ArrayList<>();
-        sub(root,tmpList,resList);
+        mySub(root,tmpList,resList);
         return resList;
     }
+
+    /**
+     * 该方法思路更清晰一些
+     * 采用先序遍历，先遍历根节点，再递归遍历左右子节点，一旦遍历完毕，则从列表中删除该根节点
+     * 如果根节点无左右子树，则算是找到一条路径，记录该路径，同时在return之前删除根节点。
+     * @param root
+     * @param tmpList
+     * @param resList
+     */
+    public void mySub(TreeNode root,LinkedList<String> tmpList,List<String> resList){
+        if(root==null)
+            return;
+        tmpList.add(root.val+"");
+        if(root.left==null&&root.right==null){
+            resList.add(StringUtils.join(tmpList,","));
+            tmpList.removeLast();
+            return;
+        }
+
+        mySub(root.left,tmpList,resList);
+        mySub(root.right,tmpList,resList);
+        tmpList.removeLast();
+    }
+
 
     public void sub(TreeNode root,LinkedList<String> tmpList,List<String> resList){
         if(root==null)

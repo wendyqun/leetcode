@@ -40,10 +40,36 @@ public class BinaryTreeInorderTraversal {
         root.right = new TreeNode(2);
         root.right.left = new TreeNode(7);
         root.right.right = new TreeNode(8);
-        List<Integer> result = new BinaryTreeInorderTraversal().inorderTraversal(root);
+        BinaryTreeInorderTraversal test=new BinaryTreeInorderTraversal();
+        List<Integer> result = test.inorderTraversal(root);
+        result=test.fun1(root);
         System.out.println(result);
     }
 
+    //递归版本，很简单了
+    public List<Integer> fun1(TreeNode root){
+        List<Integer> resList=new ArrayList<>();
+        sub(root,resList);
+        return resList;
+    }
+
+    public void sub(TreeNode root,List<Integer> list){
+        if(root==null)
+            return;
+        sub(root.left,list);
+        list.add(root.val);
+        sub(root.right,list);
+    }
+
+    //[9, 5, 10, 4, 6, 3, 7, 2, 8]
+    //有难度，不好理解
+    /**
+     * 要求是中序遍历
+     * 1）左子节点持续压栈直到叶节点结束压栈，之后弹出访问
+     * 2）若弹出元素有右子节点，持续步骤1）
+     * @param root
+     * @return
+     */
     public List<Integer> inorderTraversal(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
