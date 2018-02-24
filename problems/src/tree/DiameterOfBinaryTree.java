@@ -2,6 +2,7 @@ package tree;
 
 /**
  * 思维进入了陷阱，联想到了暴力破解，采用先序遍历，求每一个节点的路径，复杂度飙升
+ * 时隔几个月第二次看还是不会(尴尬)
  * Created by gouthamvidyapradhan on 18/10/2017.
  *
  * Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is
@@ -9,7 +10,7 @@ package tree;
 
  Example:
  Given a binary tree
- 1
+  1
  / \
  2   3
  / \

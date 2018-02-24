@@ -62,6 +62,11 @@ public class ConstructStringFromBinaryTree {
         System.out.println(new ConstructStringFromBinaryTree().tree2str(t));
     }
 
+    /**
+     * 后序遍历
+     * @param t
+     * @return
+     */
     public String tree2str(TreeNode t) {
         if (t == null) return "";
         String left = tree2str(t.left);

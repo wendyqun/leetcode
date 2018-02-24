@@ -43,6 +43,7 @@ public class ClosestBinarySearchTreeValue {
 
     /**
      * Find closest
+     * 不能蛮力遍历，要考虑到搜索二叉树的特色
      *
      * @param root   Root node
      * @param target double target
