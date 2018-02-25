@@ -36,7 +36,11 @@ public class LowestCommonAncestorBST {
     }
 
     /**
-     *
+     * 利用了搜索二叉树的特性
+     * 采用先序遍历
+     * 对于当前遍历的root节点,如果root取值在p和q中间，那么该root值就是，直接返回
+     * 如果p q 都小于root值，那么走左分支
+     * 如果p q 都大于root值，那么走有分支
      * @param root
      * @param p
      * @param q

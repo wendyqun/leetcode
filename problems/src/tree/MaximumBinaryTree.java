@@ -1,6 +1,7 @@
 package tree;
 
 /**
+ * 放弃
  * Created by gouthamvidyapradhan on 19/08/2017.
  * Given an integer array with no duplicates. A maximum tree building on this array is defined as follow:
  * <p>

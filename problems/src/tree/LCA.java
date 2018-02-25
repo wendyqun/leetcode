@@ -1,6 +1,7 @@
 package tree;
 
 /**
+ *
  * Created by gouthamvidyapradhan on 21/03/2017.
  * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
  * <p>
@@ -36,6 +37,16 @@ public class LCA {
 
     }
 
+    /**
+     * 后序遍历
+     * 未找到p或者q时，函数返回null
+     * 一旦找到一个则返回该节点
+     * 如果左右子树都返回了非空值，那么更新该函数返回值为共同的最近的根节点。该节点值一直向上抛，直到结束
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root != null) {
             if (root.equals(p) || root.equals(q)) return root;
