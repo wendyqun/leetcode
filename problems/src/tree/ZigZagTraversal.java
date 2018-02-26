@@ -115,6 +115,20 @@ public class ZigZagTraversal {
         return result;
     }
 
+    /**
+     * 深度优先
+     * 先序遍历
+     * 记录当前节点level，根据奇偶来决定插入顺序（头插法还是尾插法）
+     * 无论哪种遍历方式，每一层都是从左往右访问的
+     * 如满二叉树 1 2 3 4 5 6 7
+     * 中：4 2 5 1 6 3 7
+     * 后：4 5 2 6 7 3 1
+     * 先；1 2 4 5 3 6 7
+     * 不得不说该方法很巧妙
+     * @param root
+     * @param level
+     * @param result
+     */
     @SuppressWarnings("unchecked")
     private void dfs(TreeNode root, int level, List<List<Integer>> result) {
         if (root != null) {

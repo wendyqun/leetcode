@@ -62,7 +62,7 @@ public class PostorderToBT {
         int post[] = new int[]{1, 2};
         int myIn[]={4,2,5,1,6,3,7};
         int myPost[]={4,5,2,6,7,3,1};
-        TreeNode root = new PostorderToBT().buildTree(in, post);
+        TreeNode root = new PostorderToBT().buildTree(myIn, myPost);
         new PostorderToBT().preorderPrint(root);
         TreeNode myRoot=new PostorderToBT().myFun(myPost,myIn);
         System.out.println(myRoot);
@@ -84,6 +84,13 @@ public class PostorderToBT {
         }
     }
 
+    /**
+     * 这种解法不太好理解
+     * @param s
+     * @param e
+     * @param postorder
+     * @return
+     */
     private TreeNode build(int s, int e, int[] postorder) {
         if (postIndex >= 0 && s <= e) {
             int poi = postorder[postIndex];

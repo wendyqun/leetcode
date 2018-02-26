@@ -10,7 +10,7 @@ package tree;
  * The right subtree of a node contains only nodes with keys greater than the node's key.
  * Both the left and right subtrees must also be binary search trees.
  * Example 1:
- * 2
+ *  2
  * / \
  * 1   3
  * Binary tree [2,1,3], return true.
@@ -38,6 +38,31 @@ public class ValidBinarySearchTree {
             val = x;
         }
     }
+
+    private static TreeNode pre;
+
+    //自己的答案
+    //中序遍历
+    //函数逻辑很简单，判断当前节点值是否大于前置节点。
+    //函数整体逻辑就是，左子树是BST, 当前节点大于左子树中前置节点，右子树也是BST ,当然右子树也大于当前节点
+    //只要当前节点值大于pre节点值，就ok
+    public static boolean  valid(TreeNode root){
+        if(root==null)
+            return true;
+        boolean resLeft=valid(root.left);
+        if(pre!=null){
+            if(pre.val>root.val)
+                return false;
+        }
+        pre=root;
+        boolean resRight=valid(root.right);
+        return resLeft&&resRight;
+    }
+
+
+
+
+
 
     /**
      * 使用后续遍历
@@ -92,17 +117,18 @@ public class ValidBinarySearchTree {
     public static void main(String[] args) throws Exception {
         TreeNode root = new TreeNode(Integer.MIN_VALUE);
         root.right = new TreeNode(Integer.MAX_VALUE);
-        System.out.println(new ValidBinarySearchTree().isValidBST(root));
+        //System.out.println(new ValidBinarySearchTree().isValidBST(root));
 
         TreeNode node=new TreeNode(11);
         node.left = new TreeNode(3);
         node.right=new TreeNode(20);
         node.left.left=new TreeNode(1);
-        node.left.right=new TreeNode(12);
+        //node.left.right=new TreeNode(12);
         node.right.left=new TreeNode(15);
         node.right.right=new TreeNode(30);
 
-        System.out.println(myFun(node,new Data(),true));
+        //System.out.println(myFun(node,new Data(),true));
+        System.out.println(valid(node));
 
     }
 
