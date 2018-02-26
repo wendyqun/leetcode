@@ -43,6 +43,9 @@ public class PostorderToBT {
         }
         TreeNode root=new TreeNode(rootVal);
         int len=rootIndex-ins;
+        //中序-> 左 中 右
+        //后序-> 左 右 中
+        //如果将“中”拿出来构造了根节点后，都剩下了 左 右
         root.left=sub(postOrder,ps,ps+len-1,inOrder,ins,rootIndex-1);
         root.right=sub(postOrder,ps+len,pe-1,inOrder,rootIndex+1,ine);
         return root;

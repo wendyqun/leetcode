@@ -21,8 +21,9 @@ import java.util.Queue;
  * <p>
  * Note:
  * <p>
- * You may only use constant extra space.
- * You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
+ * You may only use constant extra space.使用常量空间
+ * You may assume that it is a perfect binary tree 假定完全二叉树
+ * (ie, all leaves are at the same level, and every parent has two children).
  * For example,
  * Given the following perfect binary tree,
  *     1
@@ -51,24 +52,32 @@ public class NextRightPointer {
         }
     }
 
+    /**
+     * 双队列
+     * 根据上层队列求出下层队列，在遍历上层队列的同时修改横向指针
+     * 使用了额外不确定空间，不符合题目要求
+     * @param root
+     */
     public void myFun(TreeLinkNode root){
         LinkedList<TreeLinkNode> list=new LinkedList<>();
         list.add(root);
         while(!list.isEmpty()){
             LinkedList<TreeLinkNode> tmpList=new LinkedList<>();
+            TreeLinkNode pre=null;
             for(TreeLinkNode node:list){
                 if(node.left!=null)
                     tmpList.add(node.left);
                 if(node.right!=null)
                     tmpList.add(node.right);
-                TreeLinkNode pre=null;
-                while(!list.isEmpty()){
-                    TreeLinkNode cur=list.removeLast();
-                    cur.next=pre;
-                    pre=cur;
+                if(pre==null)
+                    pre=node;
+                else{
+                    pre.next=node;
+                    pre=node;
                 }
-                list=tmpList;
+
             }
+            list=tmpList;
         }
     }
 
@@ -86,13 +95,22 @@ public class NextRightPointer {
         TreeLinkNode node = new TreeLinkNode(2);
         node.left = new TreeLinkNode(1);
         node.right = new TreeLinkNode(3);
+        node.left.left=new TreeLinkNode(4);
+        //node.left.right=new TreeLinkNode(5);
+        //node.right.left=new TreeLinkNode(6);
+        node.right.right=new TreeLinkNode(7);
         //new NextRightPointer().connect(node);
         new NextRightPointer().myFun(node);
-        System.out.println(node.next);
-        System.out.println(node.left.next.val);
-        System.out.println(node.right.next);
+        System.out.println(node.left.left.next.val);
+        //System.out.println(node.left.right.next.val);
     }
 
+    /**
+     * 该方法简单，使用了常量空间
+     * 与普通广度优先遍历类似，但是增加了level属性，以便区分两个元素是否是同一层级进而链接
+     * 此办法居然没想到啊！
+     * @param root
+     */
     public void connect(TreeLinkNode root) {
         Queue<LevelNode> queue = new ArrayDeque<>();
         LevelNode zero = new LevelNode(root, 0);

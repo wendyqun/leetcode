@@ -1,6 +1,7 @@
 package tree;
 
 /**
+ * 目测，NextRightPointer解法同样使用改题目，不知道对否？
  * Created by gouthamvidyapradhan on 03/10/2017.
  * <p>
  * Follow up for problem "Populating Next Right Pointers in Each Node".

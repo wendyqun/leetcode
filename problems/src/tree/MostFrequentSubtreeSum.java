@@ -156,6 +156,13 @@ public class MostFrequentSubtreeSum {
         return resArr;
     }
 
+    /**
+     * 还是这个方法标准
+     * 后序遍历，计算没颗子树节点之和
+     * 对于叶子节点，左右子树值为0，加上此根节点（叶子节点），和正好为叶子节点值本身
+     * @param root
+     * @return
+     */
     private int postOrder(TreeNode root) {
         if (root == null) return 0;
         int sum = postOrder(root.left) + postOrder(root.right) + root.val;
